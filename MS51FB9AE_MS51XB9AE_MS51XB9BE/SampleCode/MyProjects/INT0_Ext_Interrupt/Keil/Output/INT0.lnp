@@ -1,0 +1,6 @@
+".\Output\INT0.obj",
+".\Output\sys.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\INT0" 
+PRINT(".\LST\INT0.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

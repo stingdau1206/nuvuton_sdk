@@ -1,0 +1,99 @@
+C51 COMPILER V9.60.0.0   TIMER0_M1                                                         08/21/2022 20:01:44 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TIMER0_M1
+OBJECT MODULE PLACED IN .\Output\Timer0_M1.obj
+COMPILER INVOKED BY: C:\Keil_v5_8051\C51\BIN\C51.EXE ..\Timer0_M1.c OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\..\..\Library\
+                    -Device\Include;..\..\..\..\Library\StdDriver\inc) DEBUG OBJECTEXTEND PRINT(.\LST\Timer0_M1.lst) TABS(2) OBJECT(.\Output\
+                    -Timer0_M1.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Website: http://www.nuvoton.com
+   9          //  E-Mail : MicroC-8bit@nuvoton.com
+  10          //  Date   : Jan/21/2020
+  11          //********************************************************************************************************
+             -***
+  12          
+  13          //********************************************************************************************************
+             -***
+  14          //  File Function: MS51 timer mode 1, 16bit timer demo
+  15          //********************************************************************************************************
+             -***
+  16          #include "MS51_16K.H"
+  17          
+  18          
+  19          /* if define TIMER0_FSYS_DIV12, timer = (0xFFFF-0x1000)*12/24MHz = 36.58ms */
+  20          /* if define TIMER0_FSYS, timer = (0xFFFF-0x1000)/24MHz = 2.548ms */
+  21          #define TH0_INIT        0xC1 
+  22          #define TL0_INIT        0x80
+  23          
+  24          
+  25          /*********************************************************************************************************
+             -***
+  26          *    TIMER 0 interrupt subroutine
+  27          **********************************************************************************************************
+             -**/
+  28          void Timer0_ISR (void) interrupt 1  //interrupt address is 0x000B
+  29          {
+  30   1          _push_(SFRS);
+  31   1        
+  32   1          TH0 = TH0_INIT;
+  33   1          TL0 = TL0_INIT;    
+  34   1          TF0 = 0;
+  35   1          P15 = ~P15;                     // GPIO1 toggle when interrupt
+  36   1      
+  37   1          _pop_(SFRS);
+  38   1      }
+  39          
+  40          /*********************************************************************************************************
+             -***
+  41          *    Main function 
+C51 COMPILER V9.60.0.0   TIMER0_M1                                                         08/21/2022 20:01:44 PAGE 2   
+
+  42          **********************************************************************************************************
+             -**/
+  43          void main (void)
+  44          {
+  45   1          P15_PUSHPULL_MODE;
+  46   1        
+  47   1          ENABLE_TIMER0_MODE1;
+  48   1          TIMER0_FSYS;
+  49   1      
+  50   1          TH0 = TH0_INIT;
+  51   1          TL0 = TL0_INIT;
+  52   1          
+  53   1          ENABLE_TIMER0_INTERRUPT;                       //enable Timer0 interrupt
+  54   1          ENABLE_GLOBAL_INTERRUPT;                       //enable interrupts
+  55   1        
+  56   1          set_TCON_TR0;                                  //Timer0 run
+  57   1          while(1);
+  58   1      }
+  59          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     64    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

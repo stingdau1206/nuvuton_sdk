@@ -1,0 +1,78 @@
+C51 COMPILER V9.60.0.0   HELLOWORLD                                                        08/20/2022 20:32:12 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE HELLOWORLD
+OBJECT MODULE PLACED IN .\Output\helloworld.obj
+COMPILER INVOKED BY: C:\Keil_v5_8051\C51\BIN\C51.EXE ..\helloworld.c LARGE OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\..\..\L
+                    -ibrary\Device\Include;..\..\..\..\Library\StdDriver\inc) DEBUG OBJECTEXTEND PRINT(.\LST\helloworld.lst) TABS(2) OBJECT(.
+                    -\Output\helloworld.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          /*********************************************************************************************************
+             -**/
+   8          /* Website: http://www.nuvoton.com                                                                        
+             - */
+   9          /*  E-Mail : MicroC-8bit@nuvoton.com                                                                      
+             - */
+  10          /*  Date   : June/21/2020                                                                                 
+             -  */
+  11          /*********************************************************************************************************
+             -**/
+  12          
+  13          /*********************************************************************************************************
+             -***/
+  14          /*  File Function: MS51 DEMO project                                                                      
+             -  */
+  15          /*********************************************************************************************************
+             -***/
+  16          
+  17          #include "MS51_16K.h"
+  18          
+  19          
+  20          void main (void) 
+  21          {
+  22   1      /* UART0 initial setting
+  23   1        * include sys.c in Library for modify HIRC value to 24MHz
+  24   1        * include uart.c in Library for UART initial setting
+  25   1      */
+  26   1          MODIFY_HIRC(HIRC_24);
+  27   1          P06_PUSHPULL_MODE;
+  28   1          UART_Open(24000000,UART0_Timer3,115200);
+  29   1          ENABLE_UART0_PRINTF;
+  30   1      
+  31   1          printf("\n Hello world!");
+  32   1          while(1);
+  33   1      
+  34   1      
+  35   1      }
+  36          
+  37          
+  38          
+
+
+C51 COMPILER V9.60.0.0   HELLOWORLD                                                        08/20/2022 20:32:12 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     70    ----
+   CONSTANT SIZE    =     15    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

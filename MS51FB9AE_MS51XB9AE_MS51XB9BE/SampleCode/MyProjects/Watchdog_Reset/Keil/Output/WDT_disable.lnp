@@ -1,0 +1,8 @@
+".\Output\WDT_reset.obj",
+".\Output\sys.obj",
+".\Output\watchdog.obj",
+".\Output\delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\WDT_disable" 
+PRINT(".\LST\WDT_disable.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ADC_simple.C": "cpp",
+        "BOD_INT.C": "cpp",
+        "FSYS_MHIRC.C": "cpp"
+    }
+}
