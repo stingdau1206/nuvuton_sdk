@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/23/2022  01:58:58  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/24/2022  00:32:38  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -30,8 +30,8 @@ LINK MAP OF MODULE:  .\Output\WDT_disable (WDT_RESET)
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
             DATA    0008H     000DH     UNIT         ?DT?_TIMER2_DELAY?DELAY
-            DATA    0015H     000AH     UNIT         _DATA_GROUP_
-                    001FH     0001H                  *** GAP ***
+            DATA    0015H     0009H     UNIT         ?DT?_TIMER0_DELAY?DELAY
+                    001EH     0002H                  *** GAP ***
             BIT     0020H.0   0000H.1   UNIT         ?BI?SYS
                     0020H.1   0000H.7                *** GAP ***
             DATA    0021H     000CH     UNIT         ?DT?_TIMER3_DELAY?DELAY
@@ -46,37 +46,33 @@ LINK MAP OF MODULE:  .\Output\WDT_disable (WDT_RESET)
             CODE    02EDH     015AH     UNIT         ?PR?_TIMER3_DELAY?DELAY
             CODE    0447H     0125H     UNIT         ?PR?_TIMER2_DELAY?DELAY
             CODE    056CH     00FBH     UNIT         ?PR?_MODIFY_HIRC?SYS
-            CODE    0667H     00BBH     UNIT         ?PR?MAIN?WDT_RESET
-            CODE    0722H     00B2H     UNIT         ?PR?_TIMER0_DELAY?DELAY
-            CODE    07D4H     00B2H     UNIT         ?PR?_TIMER1_DELAY?DELAY
-            CODE    0886H     0087H     UNIT         ?PR?ENABLE_WDT_RESET_CONFIG?WATCHDOG
-            CODE    090DH     007DH     UNIT         ?PR?_CLOCKSWITCH?SYS
-            CODE    098AH     0058H     UNIT         ?PR?_FSYSSELECT?SYS
-            CODE    09E2H     0039H     UNIT         ?PR?_CLOCKENABLE?SYS
-            CODE    0A1BH     002AH     UNIT         ?PR?_CLOCKDISABLE?SYS
-            CODE    0A45H     001CH     UNIT         ?PR?_TIMER_INTERRUPT_ENABLE?DELAY
-            CODE    0A61H     001AH     UNIT         ?C_C51STARTUP
+            CODE    0667H     00B2H     UNIT         ?PR?_TIMER0_DELAY?DELAY
+            CODE    0719H     00B2H     UNIT         ?PR?_TIMER1_DELAY?DELAY
+            CODE    07CBH     0087H     UNIT         ?PR?ENABLE_WDT_RESET_CONFIG?WATCHDOG
+            CODE    0852H     007DH     UNIT         ?PR?_CLOCKSWITCH?SYS
+            CODE    08CFH     0058H     UNIT         ?PR?_FSYSSELECT?SYS
+            CODE    0927H     003EH     UNIT         ?PR?MAIN?WDT_RESET
+            CODE    0965H     0039H     UNIT         ?PR?_CLOCKENABLE?SYS
+            CODE    099EH     002AH     UNIT         ?PR?_CLOCKDISABLE?SYS
+            CODE    09C8H     001CH     UNIT         ?PR?_TIMER_INTERRUPT_ENABLE?DELAY
+            CODE    09E4H     001AH     UNIT         ?C_C51STARTUP
 
 
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 2
 
 
 OVERLAY MAP OF MODULE:   .\Output\WDT_disable (WDT_RESET)
 
 
-SEGMENT                                         DATA_GROUP 
-  +--> CALLED SEGMENT                         START    LENGTH
--------------------------------------------------------------
-?C_C51STARTUP                                 -----    -----
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
   +--> ?PR?MAIN?WDT_RESET
 
-?PR?MAIN?WDT_RESET                            0015H    0001H
-  +--> ?PR?DISABLE_WDT_RESET_CONFIG?WATCHDOG
-  +--> ?PR?_TIMER0_DELAY?DELAY
+?PR?MAIN?WDT_RESET
   +--> ?PR?ENABLE_WDT_RESET_CONFIG?WATCHDOG
-
-?PR?_TIMER0_DELAY?DELAY                       0016H    0009H
 
 
 
@@ -87,9 +83,7 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
 
   -------         MODULE        WDT_RESET
   C:0000H         SYMBOL        _ICE_DUMMY_
-  D:00B3H         PUBLIC        P1M1
   D:0080H         PUBLIC        P0
-  D:00B4H         PUBLIC        P1M2
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
@@ -98,13 +92,9 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   D:00A8H         PUBLIC        IE
   D:00C7H         PUBLIC        TA
   D:00B8H         PUBLIC        IP
-  C:0667H         PUBLIC        main
-  B:0080H.0       PUBLIC        P00
-  D:0087H         PUBLIC        PCON
-  B:0090H.2       PUBLIC        P12
+  C:0927H         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  D:0091H         PUBLIC        SFRS
   D:00F8H         PUBLIC        SCON_1
   D:00E8H         PUBLIC        ADCCON0
   D:00C0H         PUBLIC        I2CON
@@ -112,42 +102,16 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   D:00D0H         PUBLIC        PSW
   D:00AAH         PUBLIC        WDCON
   -------         PROC          MAIN
-  -------         DO            
-  D:0015H         SYMBOL        i
-  -------         ENDDO         
-  C:0667H         LINE#         23
-  C:0667H         LINE#         24
-  C:0667H         LINE#         26
-  C:0680H         LINE#         27
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 3
-
-
-  C:0682H         LINE#         28
-  C:0685H         LINE#         35
-  C:0693H         LINE#         36
-  C:0693H         LINE#         37
-  C:0695H         LINE#         38
-  C:06ACH         LINE#         39
-  C:06B0H         LINE#         41
-  C:06B9H         LINE#         42
-  C:06CCH         LINE#         43
-  C:06D5H         LINE#         45
-  C:06E8H         LINE#         47
-  C:06E8H         LINE#         48
-  C:06E8H         LINE#         49
-  C:06EBH         LINE#         50
-  C:06EBH         LINE#         51
-  C:06EEH         LINE#         52
-  C:06FCH         LINE#         53
-  C:06FCH         LINE#         54
-  C:06FEH         LINE#         55
-  C:0715H         LINE#         56
-  C:0719H         LINE#         57
-  C:0719H         LINE#         59
-  C:0719H         LINE#         60
-  C:071CH         LINE#         61
-  C:071FH         LINE#         62
-  C:071FH         LINE#         63
+  C:0927H         LINE#         23
+  C:0927H         LINE#         24
+  C:0927H         LINE#         25
+  C:0930H         LINE#         26
+  C:0943H         LINE#         27
+  C:094CH         LINE#         28
+  C:095FH         LINE#         29
+  C:0962H         LINE#         30
+  C:0962H         LINE#         31
+  C:0962H         LINE#         33
   -------         ENDPROC       MAIN
   -------         ENDMOD        WDT_RESET
 
@@ -155,6 +119,9 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
   D:0090H         PUBLIC        P1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 3
+
+
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   D:0084H         PUBLIC        RCTRIM0
@@ -162,7 +129,7 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   B:00A8H.7       PUBLIC        EA
   D:00D8H         PUBLIC        PWMCON0
   D:0036H         PUBLIC        BYTE_TMP
-  C:098AH         PUBLIC        _FsysSelect
+  C:08CFH         PUBLIC        _FsysSelect
   D:00A8H         PUBLIC        IE
   D:0096H         PUBLIC        CKSWT
   D:0037H         PUBLIC        SFRS_TMP
@@ -170,24 +137,21 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   D:00B8H         PUBLIC        IP
   D:0097H         PUBLIC        CKEN
   D:0038H         PUBLIC        TA_REG_TMP
-  C:0A1BH         PUBLIC        _ClockDisable
+  C:099EH         PUBLIC        _ClockDisable
   B:0020H.0       PUBLIC        BIT_TMP
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:09E2H         PUBLIC        _ClockEnable
+  C:0965H         PUBLIC        _ClockEnable
   D:009FH         PUBLIC        CHPCON
   D:0091H         PUBLIC        SFRS
   D:00F8H         PUBLIC        SCON_1
   D:00A4H         PUBLIC        IAPTRG
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 4
-
-
   C:056CH         PUBLIC        _MODIFY_HIRC
   D:00E8H         PUBLIC        ADCCON0
   D:00C0H         PUBLIC        I2CON
   D:00A7H         PUBLIC        IAPAH
   D:00AEH         PUBLIC        IAPFD
-  C:090DH         PUBLIC        _ClockSwitch
+  C:0852H         PUBLIC        _ClockSwitch
   D:00C8H         PUBLIC        T2CON
   D:00A6H         PUBLIC        IAPAL
   D:00AFH         PUBLIC        IAPCN
@@ -215,6 +179,9 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:0587H         LINE#         41
   C:058AH         LINE#         42
   C:058AH         LINE#         43
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 4
+
+
   C:058AH         LINE#         44
   C:059DH         LINE#         45
   C:05A0H         LINE#         46
@@ -239,9 +206,6 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:062AH         LINE#         66
   C:0634H         LINE#         68
   C:0639H         LINE#         69
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 5
-
-
   C:0639H         LINE#         70
   C:063DH         LINE#         71
   C:0643H         LINE#         73
@@ -258,86 +222,89 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   -------         ENDPROC       _MODIFY_HIRC
   -------         PROC          _FSYSSELECT
   D:0007H         SYMBOL        u8FsysMode
-  C:098AH         LINE#         95
-  C:098AH         LINE#         96
-  C:098AH         LINE#         97
-  C:0996H         LINE#         98
-  C:0996H         LINE#         100
-  C:0996H         LINE#         101
-  C:099BH         LINE#         102
-  C:09A0H         LINE#         103
-  C:09A1H         LINE#         106
-  C:09A1H         LINE#         107
-  C:09A6H         LINE#         108
-  C:09B9H         LINE#         109
-  C:09BAH         LINE#         112
-  C:09BAH         LINE#         113
-  C:09BFH         LINE#         114
-  C:09C4H         LINE#         115
-  C:09C9H         LINE#         116
-  C:09CEH         LINE#         117
-  C:09E1H         LINE#         118
-  C:09E1H         LINE#         119
-  C:09E1H         LINE#         120
+  C:08CFH         LINE#         95
+  C:08CFH         LINE#         96
+  C:08CFH         LINE#         97
+  C:08DBH         LINE#         98
+  C:08DBH         LINE#         100
+  C:08DBH         LINE#         101
+  C:08E0H         LINE#         102
+  C:08E5H         LINE#         103
+  C:08E6H         LINE#         106
+  C:08E6H         LINE#         107
+  C:08EBH         LINE#         108
+  C:08FEH         LINE#         109
+  C:08FFH         LINE#         112
+  C:08FFH         LINE#         113
+  C:0904H         LINE#         114
+  C:0909H         LINE#         115
+  C:090EH         LINE#         116
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 5
+
+
+  C:0913H         LINE#         117
+  C:0926H         LINE#         118
+  C:0926H         LINE#         119
+  C:0926H         LINE#         120
   -------         ENDPROC       _FSYSSELECT
   -------         PROC          _CLOCKENABLE
   D:0007H         SYMBOL        u8FsysMode
-  C:09E2H         LINE#         122
-  C:09E2H         LINE#         123
-  C:09E2H         LINE#         124
-  C:09EBH         LINE#         125
-  C:09EBH         LINE#         127
-  C:09EBH         LINE#         128
-  C:09FEH         LINE#         129
-  C:0A08H         LINE#         130
-  C:0A09H         LINE#         132
-  C:0A09H         LINE#         133
-  C:0A12H         LINE#         134
-  C:0A1AH         LINE#         135
-  C:0A1AH         LINE#         136
-  C:0A1AH         LINE#         137
+  C:0965H         LINE#         122
+  C:0965H         LINE#         123
+  C:0965H         LINE#         124
+  C:096EH         LINE#         125
+  C:096EH         LINE#         127
+  C:096EH         LINE#         128
+  C:0981H         LINE#         129
+  C:098BH         LINE#         130
+  C:098CH         LINE#         132
+  C:098CH         LINE#         133
+  C:0995H         LINE#         134
+  C:099DH         LINE#         135
+  C:099DH         LINE#         136
+  C:099DH         LINE#         137
   -------         ENDPROC       _CLOCKENABLE
   -------         PROC          _CLOCKDISABLE
   D:0007H         SYMBOL        u8FsysMode
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 6
-
-
-  C:0A1BH         LINE#         139
-  C:0A1BH         LINE#         140
-  C:0A1BH         LINE#         141
-  C:0A1EH         LINE#         142
-  C:0A27H         LINE#         143
-  C:0A27H         LINE#         145
-  C:0A27H         LINE#         146
-  C:0A3AH         LINE#         147
-  C:0A3BH         LINE#         149
-  C:0A3BH         LINE#         150
-  C:0A44H         LINE#         151
-  C:0A44H         LINE#         152
-  C:0A44H         LINE#         153
+  C:099EH         LINE#         139
+  C:099EH         LINE#         140
+  C:099EH         LINE#         141
+  C:09A1H         LINE#         142
+  C:09AAH         LINE#         143
+  C:09AAH         LINE#         145
+  C:09AAH         LINE#         146
+  C:09BDH         LINE#         147
+  C:09BEH         LINE#         149
+  C:09BEH         LINE#         150
+  C:09C7H         LINE#         151
+  C:09C7H         LINE#         152
+  C:09C7H         LINE#         153
   -------         ENDPROC       _CLOCKDISABLE
   -------         PROC          _CLOCKSWITCH
   D:0007H         SYMBOL        u8FsysMode
-  C:090DH         LINE#         155
-  C:090DH         LINE#         156
-  C:090DH         LINE#         157
-  C:0910H         LINE#         158
-  C:0916H         LINE#         159
-  C:0922H         LINE#         160
-  C:0922H         LINE#         162
-  C:0922H         LINE#         163
-  C:0935H         LINE#         164
-  C:0948H         LINE#         165
-  C:094AH         LINE#         167
-  C:094AH         LINE#         168
-  C:095DH         LINE#         169
-  C:0970H         LINE#         170
-  C:0972H         LINE#         172
-  C:0972H         LINE#         173
-  C:0985H         LINE#         174
-  C:0985H         LINE#         175
-  C:0985H         LINE#         176
-  C:0989H         LINE#         177
+  C:0852H         LINE#         155
+  C:0852H         LINE#         156
+  C:0852H         LINE#         157
+  C:0855H         LINE#         158
+  C:085BH         LINE#         159
+  C:0867H         LINE#         160
+  C:0867H         LINE#         162
+  C:0867H         LINE#         163
+  C:087AH         LINE#         164
+  C:088DH         LINE#         165
+  C:088FH         LINE#         167
+  C:088FH         LINE#         168
+  C:08A2H         LINE#         169
+  C:08B5H         LINE#         170
+  C:08B7H         LINE#         172
+  C:08B7H         LINE#         173
+  C:08CAH         LINE#         174
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 6
+
+
+  C:08CAH         LINE#         175
+  C:08CAH         LINE#         176
+  C:08CEH         LINE#         177
   -------         ENDPROC       _CLOCKSWITCH
   -------         ENDMOD        SYS
 
@@ -355,13 +322,10 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:0003H         PUBLIC        Disable_WDT_Reset_Config
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0886H         PUBLIC        Enable_WDT_Reset_Config
+  C:07CBH         PUBLIC        Enable_WDT_Reset_Config
   D:009FH         PUBLIC        CHPCON
   D:00A5H         PUBLIC        IAPUEN
   D:00F8H         PUBLIC        SCON_1
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 7
-
-
   D:00A4H         PUBLIC        IAPTRG
   D:00E8H         PUBLIC        ADCCON0
   D:00C0H         PUBLIC        I2CON
@@ -373,20 +337,20 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   D:00D0H         PUBLIC        PSW
   D:00AAH         PUBLIC        WDCON
   -------         PROC          ENABLE_WDT_RESET_CONFIG
-  C:0886H         LINE#         13
-  C:0886H         LINE#         14
-  C:0886H         LINE#         15
-  C:0899H         LINE#         16
-  C:089CH         LINE#         17
-  C:089FH         LINE#         18
-  C:08A2H         LINE#         19
-  C:08A5H         LINE#         20
-  C:08B8H         LINE#         21
-  C:08CBH         LINE#         22
-  C:08D3H         LINE#         23
-  C:08E6H         LINE#         24
-  C:08F9H         LINE#         25
-  C:090CH         LINE#         26
+  C:07CBH         LINE#         13
+  C:07CBH         LINE#         14
+  C:07CBH         LINE#         15
+  C:07DEH         LINE#         16
+  C:07E1H         LINE#         17
+  C:07E4H         LINE#         18
+  C:07E7H         LINE#         19
+  C:07EAH         LINE#         20
+  C:07FDH         LINE#         21
+  C:0810H         LINE#         22
+  C:0818H         LINE#         23
+  C:082BH         LINE#         24
+  C:083EH         LINE#         25
+  C:0851H         LINE#         26
   -------         ENDPROC       ENABLE_WDT_RESET_CONFIG
   -------         PROC          DISABLE_WDT_RESET_CONFIG
   -------         DO            
@@ -395,6 +359,9 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   D:0005H         SYMBOL        cf2
   D:0004H         SYMBOL        cf3
   D:0003H         SYMBOL        cf4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 7
+
+
   -------         ENDDO         
   C:0003H         LINE#         37
   C:0003H         LINE#         38
@@ -419,9 +386,6 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:0093H         LINE#         59
   C:0096H         LINE#         61
   C:00A9H         LINE#         62
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 8
-
-
   C:00ACH         LINE#         63
   C:00AEH         LINE#         64
   C:00B0H         LINE#         65
@@ -455,14 +419,17 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   -------         MODULE        DELAY
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 8
+
+
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   D:009CH         PUBLIC        EIE1
   B:00A8H.7       PUBLIC        EA
   D:00D8H         PUBLIC        PWMCON0
-  C:0722H         PUBLIC        _Timer0_Delay
-  C:07D4H         PUBLIC        _Timer1_Delay
+  C:0667H         PUBLIC        _Timer0_Delay
+  C:0719H         PUBLIC        _Timer1_Delay
   C:0447H         PUBLIC        _Timer2_Delay
   C:02EDH         PUBLIC        _Timer3_Delay
   D:00A8H         PUBLIC        IE
@@ -479,9 +446,6 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   B:00A8H.3       PUBLIC        ET1
   B:0088H.7       PUBLIC        TF1
   B:00C8H.7       PUBLIC        TF2
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 9
-
-
   D:008CH         PUBLIC        TH0
   D:00C6H         PUBLIC        RH3
   D:008DH         PUBLIC        TH1
@@ -496,37 +460,40 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   B:00C8H.2       PUBLIC        TR2
   D:00E8H         PUBLIC        ADCCON0
   D:00C0H         PUBLIC        I2CON
-  C:0A45H         PUBLIC        _Timer_Interrupt_Enable
+  C:09C8H         PUBLIC        _Timer_Interrupt_Enable
   D:00C9H         PUBLIC        T2MOD
   D:00C8H         PUBLIC        T2CON
   D:00C4H         PUBLIC        T3CON
   D:008EH         PUBLIC        CKCON
   D:00D0H         PUBLIC        PSW
   -------         PROC          _TIMER0_DELAY
-  D:0016H         SYMBOL        u32SYSCLK
-  D:001AH         SYMBOL        u16CNT
-  D:001CH         SYMBOL        u16DLYUnit
+  D:0015H         SYMBOL        u32SYSCLK
+  D:0019H         SYMBOL        u16CNT
+  D:001BH         SYMBOL        u16DLYUnit
   -------         DO            
-  D:001EH         SYMBOL        TL0TMP
+  D:001DH         SYMBOL        TL0TMP
   D:0007H         SYMBOL        TH0TMP
   -------         ENDDO         
-  C:0722H         LINE#         28
-  C:072AH         LINE#         29
-  C:072AH         LINE#         32
-  C:072DH         LINE#         33
-  C:0733H         LINE#         34
-  C:0774H         LINE#         35
-  C:07B5H         LINE#         37
-  C:07BBH         LINE#         38
-  C:07BBH         LINE#         39
-  C:07BEH         LINE#         40
-  C:07C0H         LINE#         41
-  C:07C2H         LINE#         42
-  C:07C5H         LINE#         43
-  C:07C7H         LINE#         44
-  C:07C9H         LINE#         45
-  C:07D1H         LINE#         46
-  C:07D3H         LINE#         48
+  C:0667H         LINE#         28
+  C:066FH         LINE#         29
+  C:066FH         LINE#         32
+  C:0672H         LINE#         33
+  C:0678H         LINE#         34
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 9
+
+
+  C:06B9H         LINE#         35
+  C:06FAH         LINE#         37
+  C:0700H         LINE#         38
+  C:0700H         LINE#         39
+  C:0703H         LINE#         40
+  C:0705H         LINE#         41
+  C:0707H         LINE#         42
+  C:070AH         LINE#         43
+  C:070CH         LINE#         44
+  C:070EH         LINE#         45
+  C:0716H         LINE#         46
+  C:0718H         LINE#         48
   -------         ENDPROC       _TIMER0_DELAY
   -------         PROC          _TIMER1_DELAY
   D:002DH         SYMBOL        u32SYSCLK
@@ -536,26 +503,23 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   D:0035H         SYMBOL        TL1TMP
   D:0007H         SYMBOL        TH1TMP
   -------         ENDDO         
-  C:07D4H         LINE#         63
-  C:07DCH         LINE#         64
-  C:07DCH         LINE#         67
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 10
-
-
-  C:07DFH         LINE#         68
-  C:07E5H         LINE#         69
-  C:0826H         LINE#         70
-  C:0867H         LINE#         72
-  C:086DH         LINE#         73
-  C:086DH         LINE#         74
-  C:0870H         LINE#         75
-  C:0872H         LINE#         76
-  C:0874H         LINE#         77
-  C:0877H         LINE#         78
-  C:0879H         LINE#         79
-  C:087BH         LINE#         80
-  C:0883H         LINE#         81
-  C:0885H         LINE#         82
+  C:0719H         LINE#         63
+  C:0721H         LINE#         64
+  C:0721H         LINE#         67
+  C:0724H         LINE#         68
+  C:072AH         LINE#         69
+  C:076BH         LINE#         70
+  C:07ACH         LINE#         72
+  C:07B2H         LINE#         73
+  C:07B2H         LINE#         74
+  C:07B5H         LINE#         75
+  C:07B7H         LINE#         76
+  C:07B9H         LINE#         77
+  C:07BCH         LINE#         78
+  C:07BEH         LINE#         79
+  C:07C0H         LINE#         80
+  C:07C8H         LINE#         81
+  C:07CAH         LINE#         82
   -------         ENDPROC       _TIMER1_DELAY
   -------         PROC          _TIMER2_DELAY
   D:0008H         SYMBOL        u32SYSCLK
@@ -575,6 +539,9 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:0483H         LINE#         107
   C:048BH         LINE#         108
   C:0493H         LINE#         109
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 10
+
+
   C:049BH         LINE#         110
   C:04A3H         LINE#         111
   C:04ABH         LINE#         112
@@ -599,9 +566,6 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   -------         ENDPROC       _TIMER2_DELAY
   -------         PROC          _TIMER3_DELAY
   D:0021H         SYMBOL        u32SYSCLK
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 11
-
-
   D:0025H         SYMBOL        u8TMDIV
   D:0026H         SYMBOL        u16CNT
   D:0028H         SYMBOL        u32DLYUnit
@@ -635,39 +599,39 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:0411H         LINE#         171
   C:0427H         LINE#         172
   C:043CH         LINE#         173
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 11
+
+
   C:0444H         LINE#         174
   C:0446H         LINE#         175
   -------         ENDPROC       _TIMER3_DELAY
   -------         PROC          _TIMER_INTERRUPT_ENABLE
   D:0007H         SYMBOL        u8TM
-  C:0A45H         LINE#         183
-  C:0A45H         LINE#         184
-  C:0A45H         LINE#         185
-  C:0A53H         LINE#         186
-  C:0A53H         LINE#         187
-  C:0A56H         LINE#         188
-  C:0A59H         LINE#         189
-  C:0A5DH         LINE#         190
-  C:0A60H         LINE#         191
-  C:0A60H         LINE#         192
+  C:09C8H         LINE#         183
+  C:09C8H         LINE#         184
+  C:09C8H         LINE#         185
+  C:09D6H         LINE#         186
+  C:09D6H         LINE#         187
+  C:09D9H         LINE#         188
+  C:09DCH         LINE#         189
+  C:09E0H         LINE#         190
+  C:09E3H         LINE#         191
+  C:09E3H         LINE#         192
   -------         ENDPROC       _TIMER_INTERRUPT_ENABLE
   -------         ENDMOD        DELAY
 
   -------         MODULE        ?C_STARTUP
-  C:0A61H         SEGMENT       ?C_C51STARTUP
+  C:09E4H         SEGMENT       ?C_C51STARTUP
   I:0039H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/23/2022  01:58:58  PAGE 12
-
-
   D:0083H         SYMBOL        DPH
   D:0082H         SYMBOL        DPL
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:0A64H         SYMBOL        IDATALOOP
+  C:09E7H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0000H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -676,27 +640,30 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0A61H         SYMBOL        STARTUP1
+  C:09E4H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:02FFH         SYMBOL        XDATALEN
-  C:0A6FH         SYMBOL        XDATALOOP
+  C:09F2H         SYMBOL        XDATALOOP
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         94
-  C:0A61H         LINE#         109
-  C:0A63H         LINE#         110
-  C:0A64H         LINE#         111
-  C:0A65H         LINE#         112
-  C:0A67H         LINE#         116
-  C:0A6AH         LINE#         117
-  C:0A6CH         LINE#         119
-  C:0A6EH         LINE#         123
-  C:0A6FH         LINE#         124
-  C:0A70H         LINE#         125
-  C:0A71H         LINE#         126
-  C:0A73H         LINE#         127
-  C:0A75H         LINE#         161
-  C:0A78H         LINE#         165
+  C:09E4H         LINE#         109
+  C:09E6H         LINE#         110
+  C:09E7H         LINE#         111
+  C:09E8H         LINE#         112
+  C:09EAH         LINE#         116
+  C:09EDH         LINE#         117
+  C:09EFH         LINE#         119
+  C:09F1H         LINE#         123
+  C:09F2H         LINE#         124
+  C:09F3H         LINE#         125
+  C:09F4H         LINE#         126
+  C:09F6H         LINE#         127
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2022  00:32:38  PAGE 12
+
+
+  C:09F8H         LINE#         161
+  C:09FBH         LINE#         165
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        ?C?LMUL
@@ -715,5 +682,5 @@ SYMBOL TABLE OF MODULE:  .\Output\WDT_disable (WDT_RESET)
   C:02C0H         PUBLIC        ?C?ICASE
   -------         ENDMOD        ?C?ICASE
 
-Program Size: data=56.1 xdata=0 code=2683
+Program Size: data=55.1 xdata=0 code=2558
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
