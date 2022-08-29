@@ -1,6 +1,0 @@
-".\Output\Timer0_M1.obj",
-".\Output\sys.obj",
-".\Output\STARTUP.obj" 
-TO ".\Output\Timer0_M1" 
-PRINT(".\LST\Timer0_M1.m51") RAMSIZE(256) 
-DISABLEWARNING (16) 
