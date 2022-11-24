@@ -41,92 +41,95 @@ void main(void)
 {
 	millis_init();
 	IR_Init();
-	board_io_init();
-	board_pwm_init();
+//	board_io_init();
+//	board_pwm_init();
 
 	set_WDCON_WDCLR; // Clear WDT timer
 
 	while (1)
 	{
 		set_WDCON_WDCLR;
-
-		current_time = millis();
-		if (find_flag)
+		if(IR_Check(&u32Cmd, 1))
 		{
-			LED_OUT_PIN = !LED_OUT_PIN;
-			if (count_find < 6)
-			{
-				PWMRUN = !PWMRUN;
-				XINHAN_OUT_PIN = !XINHAN_OUT_PIN;
-			}
-			else
-			{
-				PWMRUN = 0;
-				XINHAN_OUT_PIN = 0;
-			}
-			count_find++;
-			if (count_find >= 40)
-			{
-				PWMRUN = 0;
-				XINHAN_OUT_PIN = 0;
-				LED_OUT_PIN = 0;
-				count_find = 0;
-				find_flag = 0;
-			}
+			open_time++;
 		}
-		while (millis() - current_time < 500)
-		{
-			set_WDCON_WDCLR;
-			if (IR_Check(&u32Cmd, 1))
-			{
-				switch (u32Cmd)
-				{
-				case FIND_BUTTON:
-					find_flag = 1;
-					count_find = 0;
-					break;
-				case KEY_BUTTON:
-					count_key++;
-					if (key_state == 0)
-					{
-						if (count_key >= 70)
-						{
-							open_lock_handle();
-							LED_OUT_PIN = 1;
-							open_time = millis();
-							led_flag = 1;
-						}
-					}
-					else
-					{
-						close_lock_handle();
-					}
-					break;
-				case SPEAKER_BUTTON:
-					count_speaker++;
-					if (count_speaker >= 40)
-					{
-						count_speaker = 0;
-						speaker_state = !speaker_state;
-						speaker_handle(speaker_state);
-					}
-					break;
-				}
-			}
-		}
-		if(key_state == 1 && (millis() - open_time) > 10000 && led_flag == 1)
-		{
-			led_flag = 0;
-			LED_OUT_PIN = 0;
-			PWMRUN = 1;
-			delay_ms(PERIOD_OPEN);
-			PWMRUN = 0;
-			delay_ms(PERIOD_CLOSE);
-			set_WDCON_WDCLR;
-			PWMRUN = 1;
-			delay_ms(PERIOD_OPEN);
-			PWMRUN = 0;
-		}
+//		current_time = millis();
+//		if (find_flag)
+//		{
+//			LED_OUT_PIN = !LED_OUT_PIN;
+//			if (count_find < 6)
+//			{
+//				PWMRUN = !PWMRUN;
+//				XINHAN_OUT_PIN = !XINHAN_OUT_PIN;
+//			}
+//			else
+//			{
+//				PWMRUN = 0;
+//				XINHAN_OUT_PIN = 0;
+//			}
+//			count_find++;
+//			if (count_find >= 40)
+//			{
+//				PWMRUN = 0;
+//				XINHAN_OUT_PIN = 0;
+//				LED_OUT_PIN = 0;
+//				count_find = 0;
+//				find_flag = 0;
+//			}
+//		}
+//		while (millis() - current_time < 500)
+//		{
+//			set_WDCON_WDCLR;
+//			if (IR_Check(&u32Cmd, 1))
+//			{
+//				switch (u32Cmd)
+//				{
+//				case FIND_BUTTON:
+//					find_flag = 1;
+//					count_find = 0;
+//					break;
+//				case KEY_BUTTON:
+//					count_key++;
+//					if (key_state == 0)
+//					{
+//						if (count_key >= 70)
+//						{
+//							open_lock_handle();
+//							LED_OUT_PIN = 1;
+//							open_time = millis();
+//							led_flag = 1;
+//						}
+//					}
+//					else
+//					{
+//						close_lock_handle();
+//					}
+//					break;
+//				case SPEAKER_BUTTON:
+//					count_speaker++;
+//					if (count_speaker >= 40)
+//					{
+//						count_speaker = 0;
+//						speaker_state = !speaker_state;
+//						speaker_handle(speaker_state);
+//					}
+//					break;
+//				}
+//			}
+//		}
+//		if(key_state == 1 && (millis() - open_time) > 10000 && led_flag == 1)
+//		{
+//			led_flag = 0;
+//			LED_OUT_PIN = 0;
+//			PWMRUN = 1;
+//			delay_ms(PERIOD_OPEN);
+//			PWMRUN = 0;
+//			delay_ms(PERIOD_CLOSE);
+//			set_WDCON_WDCLR;
+//			PWMRUN = 1;
+//			delay_ms(PERIOD_OPEN);
+//			PWMRUN = 0;
+//		}
 	}
 }
 

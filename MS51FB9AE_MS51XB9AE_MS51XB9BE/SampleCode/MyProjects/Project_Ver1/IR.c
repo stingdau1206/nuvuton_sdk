@@ -2,14 +2,14 @@
 
 #define IR_IN_VAL P15
 
-#define NUM_BIT 24
+#define NUM_BIT 11
 
-#define START_MIN 1400
-#define START_MAX 1500
-#define PRIMARY_MIN 580
-#define PRIMARY_MAX 680
-#define SECOND_MIN 150
-#define SECOND_MAX 250
+#define START_MIN 7000
+#define START_MAX 8500
+#define PRIMARY_MIN 1200
+#define PRIMARY_MAX 1400
+#define SECOND_MIN 300
+#define SECOND_MAX 500
 
 static void tim2_init(void);
 static void cap_init(void);
@@ -45,7 +45,7 @@ static uint32_t u32Result = 0;
 void idle_state(void)
 {
 	uint16_t u16Tmp;
-	if (IR_IN_VAL)
+	if (!IR_IN_VAL)
 	{
 		u16Tmp = C0H * 256 + C0L;
 		if (u16Tmp > START_MIN && u16Tmp < START_MAX)
@@ -64,7 +64,7 @@ void idle_state(void)
 void receive_state(void)
 {
 	uint16_t u16Tmp;
-	if (!IR_IN_VAL)
+	if (IR_IN_VAL)
 	{
 		u16Tmp = C0H * 256 + C0L;
 		if (u16Tmp > SECOND_MIN && u16Tmp < SECOND_MAX)
@@ -90,7 +90,7 @@ void receive_state(void)
 void check_bit_0_state(void)
 {
 	uint16_t u16Tmp;
-	if (IR_IN_VAL)
+	if (!IR_IN_VAL)
 	{
 		u16Tmp = C0H * 256 + C0L;
 		if (u16Tmp > PRIMARY_MIN && u16Tmp < PRIMARY_MAX)
@@ -107,7 +107,7 @@ void check_bit_0_state(void)
 void check_bit_1_state(void)
 {
 	uint16_t u16Tmp;
-	if (IR_IN_VAL)
+	if (!IR_IN_VAL)
 	{
 		u16Tmp = C0H * 256 + C0L;
 		if (u16Tmp > SECOND_MIN && u16Tmp < SECOND_MAX)
@@ -181,7 +181,7 @@ uint8_t IR_Check(uint32_t *pu32Cmd, uint8_t encode)
 				// decode_succ_state();
 			}
 			u8State = STATE_IDLE;
-			*pu32Cmd = u32Result;
+			*pu32Cmd = ~(u32Result) & 0x7FF;
 			return 1;
 		}
 	}
